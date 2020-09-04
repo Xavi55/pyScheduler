@@ -1,0 +1,16 @@
+/env
+/view/node_modules
+/view/build
+/view/.DS_Store
+/view/.env.local
+/view/.env.development.local
+/view/.env.test.local
+/view/.env.production.local
+
+/view/npm-debug.log*
+/view/yarn-debug.log*
+/view/yarn-error.log*
+
+
+
+__pycache__
