@@ -23,6 +23,17 @@ margin:0;
   display: grid;
   grid-template-columns: repeat(7,1fr);
 }
+#inner-grid h4
+{
+  text-align: center;
+}
+.false
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/*Day.js*/
 .d
 {
   height:20vh;
