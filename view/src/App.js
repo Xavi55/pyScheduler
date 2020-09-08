@@ -47,15 +47,8 @@ function App()
        }
        else
        {
-           setState(prev=>
-            {
-                return{
-                    ...prev,
-                    trav:state.trav-1
-                }
-            })
+           changeMonth(-1)
        }
-       console.log(state.trav)
    }
    const handleRightArrow=()=>
    {
@@ -80,12 +73,34 @@ function App()
             }
        })
     }
-    /*prev=>{
-   
-    ...prev,
-    key:val
+    const changeMonth=(code)=>
+    {
+        if(code !==0 && state.trav>-3)
+        {
+            const d = new Date(state.cYear,state.cMonth+code)
+            const y = d.getFullYear()
+            const days = getDays(state.cMonth,y)
+            setState(prev=>
+                {
+                    return{
+                        ...prev,
+                        cYear:y,
+                        cDay:days,
+                        cMonth:state.cMonth+code,
+                        today:false,
+                        trav:state.trav+code
+                    }
+                })
+        }
+        else if(code===0)
+        {
+            getDate()
+        }
+        else
+        {
+            console.log("No more")
+        }
     }
-    */
     
    const getDays=(mon,yr)=>
    {
