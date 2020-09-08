@@ -33,6 +33,10 @@ margin:0;
   align-items: center;
   justify-content: center;
 }
+#today
+{
+  background-color:coral;
+}
 /*Day.js*/
 .d
 {
@@ -48,4 +52,33 @@ margin:0;
 .d:hover
 {
   cursor: pointer;
+}
+/*Grid*/
+#grid
+{
+  
+  margin:10% 10%;
+}
+#content
+{
+  display: grid;
+  grid-template-columns: 1fr 6fr;
+  row-gap: .5em;
+  column-gap: .5em;
+  border: solid 2px black;
+  border-radius: 15px;
+  padding:0 0 0 2%;
+}
+#gTitle
+{
+  text-align: center;
+}
+.block
+{
+  text-align: center;
+}
+.block:hover
+{
+  background-color: chartreuse;
+  border-radius: 15px;
 }
