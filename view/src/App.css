@@ -7,7 +7,7 @@ margin:0;
 {
   width: 100%;
   display: grid;
-  grid-template-rows: 1fr 6fr;
+  grid-template-rows: 1fr 10fr;
 }
 #cMonth
 {
@@ -49,10 +49,12 @@ margin:0;
 {
   background-color: gainsboro;
 }
+/*
 .d:hover
 {
   cursor: pointer;
 }
+*/
 /*Grid*/
 #grid
 {
@@ -73,12 +75,57 @@ margin:0;
 {
   text-align: center;
 }
+.bLink
+{
+  text-decoration: none;
+  color:black;
+}
 .block
 {
-  text-align: center;
+  text-align: left;
+  display: inline;
+  margin:0 2%;
 }
 .block:hover
 {
   background-color: chartreuse;
-  border-radius: 15px;
+  border-radius: 9px;
+}
+/*Form*/
+#form
+{
+  padding-top: 2em;
+  margin: 15% 8%;
+  padding: 2px 2px;
+  border:black solid 2px;
+  border-radius: 10px;
+  text-align: center;
+}
+#form input,select,textarea
+{
+  margin:0 0 2em 2em;
+}
+textarea
+{
+  padding: .5em 1em;
+  border: black solid 1px;
+  border-radius: 10px;
+
+  resize: none;
+}
+#blue
+{
+  background-color: rgb(96, 197, 255);
+}
+#green
+{
+  background-color:greenyellow;
+}
+#yellow
+{
+  background-color: yellow;
+}
+#orange
+{
+  background-color: orange;
 }

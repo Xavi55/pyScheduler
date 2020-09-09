@@ -1,17 +1,15 @@
-import React, { useState,useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom'
 
 function Grid(match)
 {
-
-    console.log(match)
     let vars= match.match.params
     return(
         <div id="grid">
-            <Link  id="home" to={'/'}>Home</Link>
+            <Link  id="home" to={'/'}>Go back</Link>
             <h2 id="gTitle">{vars.month} {vars.day}</h2>
             <div id="content">
-                <h2>8am</h2><h2 className="block">-</h2>
+                <h2>8am</h2><div><Link className={"bLink"} to={'/Form'}><h2 className="block">Name</h2></Link><Link className={"bLink"} to={'/Form'}><h2 className="block">Name2</h2></Link></div>
                 <h2>9am</h2><h2 className="block">-</h2>
                 <h2>10am</h2><h2 className="block">-</h2>
                 <h2>11am</h2><h2 className="block">-</h2>

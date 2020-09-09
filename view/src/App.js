@@ -11,6 +11,7 @@ import './App.css';
 //custom components
 import Day from './components/Day'
 import Grid from './components/Grid'
+import Form from './components/Form'
 
 function App()
 {
@@ -41,18 +42,17 @@ function App()
 
    const handleLeftArrow=()=>
    {
-       if(state.trav<-3)
-       {
-           console.log("Can't go back any further.")
-       }
-       else
+       if(state.trav>-3)
        {
            changeMonth(-1)
        }
    }
    const handleRightArrow=()=>
    {
-       console.log('larrow')   
+       if(state.trav<3)
+       {
+           changeMonth(1)
+       }
    }
 
    const getDate=()=>
@@ -69,13 +69,18 @@ function App()
                cYear:y,
                cDay:days,
                cMonth:m,
-               today:today
+               today:today,
+               trav:0
             }
        })
     }
     const changeMonth=(code)=>
     {
-        if(code !==0 && state.trav>-3)
+        if(code + state.trav===0)
+        {
+            getDate()
+        }
+        else
         {
             const d = new Date(state.cYear,state.cMonth+code)
             const y = d.getFullYear()
@@ -91,14 +96,6 @@ function App()
                         trav:state.trav+code
                     }
                 })
-        }
-        else if(code===0)
-        {
-            getDate()
-        }
-        else
-        {
-            console.log("No more")
         }
     }
     
@@ -143,7 +140,7 @@ function App()
                 exact={true}
             >
                 <div className="App">
-                    <h1 id="cMonth"><span className="arrow" onClick={handleLeftArrow}>◄</span>&nbsp;&nbsp;&nbsp;{mon[state.cMonth]}&nbsp;&nbsp;&nbsp;<span className="arrow" id="rarrow">►</span></h1>
+                    <h1 id="cMonth"><span className="arrow" onClick={handleLeftArrow}>◄</span>&nbsp;&nbsp;&nbsp;{mon[state.cMonth]}&nbsp;&nbsp;&nbsp;<span className="arrow" onClick={handleRightArrow}>►</span></h1>
                     <div id="inner-grid">
                         <h4>Sun</h4>
                         <h4>Mon</h4>
@@ -162,6 +159,11 @@ function App()
                 render={(props) => (
                     <Grid {...props} day={state.cDay} />
                   )}
+            />
+            <Route
+                path={'/Form'}
+                exact={true}
+                component={Form}
             />
         </Router>        
     );
