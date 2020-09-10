@@ -1,4 +1,6 @@
 /env
+config.json
+
 /view/node_modules
 /view/build
 /view/.DS_Store

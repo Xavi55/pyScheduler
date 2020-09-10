@@ -12,6 +12,7 @@ function Form(props)
             day:null,
             month:null,
             year:null,
+            time:null,
             color:"b",
 
             redirect:false
@@ -31,6 +32,7 @@ function Form(props)
                         year:params.year,
                         month:params.month,
                         day:params.day,
+                        time:params.time
                     }
                 })
         }
@@ -54,20 +56,31 @@ function Form(props)
     {
         e.preventDefault()
         console.log(state)
+        let data={
+            state
+        }
 
-        fetch('/')
+        fetch("/subForm",
+        {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        }).then(res=>res.json())
         .then(res=>console.log(res))
         .catch(err=>{
             console.log(err)
         })
         //start redirect
+        /* 
         setState(prev=>
         {
           return{
               ...prev,
               redirect:true
           }  
-        })
+        }) */
 
     }
     if(state.redirect || props.location.params ===undefined)
