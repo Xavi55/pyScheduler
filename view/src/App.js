@@ -157,7 +157,7 @@ function App()
                 path={'/:year/:month/:day'}
                 exact={true}
                 render={(props) => (
-                    <Grid {...props} day={state.cDay} />
+                    <Grid {...props} day={state.cDay} />//test state
                   )}
             />
             <Route

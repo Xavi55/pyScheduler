@@ -12,7 +12,7 @@ function Form(props)
             day:null,
             month:null,
             year:null,
-            color:null,
+            color:"b",
 
             redirect:false
         }
@@ -20,7 +20,21 @@ function Form(props)
 
     useEffect(()=>
     {
-        console.log('form',props)
+        let params = props.location.params
+
+        if (params !== undefined )
+        {
+            setState(prev=>
+                {
+                    return{
+                        ...prev,
+                        year:params.year,
+                        month:params.month,
+                        day:params.day,
+                    }
+                })
+        }
+        //console.log('form',props)
     },[])
 
     const handleChange=(e)=>
@@ -34,32 +48,44 @@ function Form(props)
                     [x]:value
                 }
             })
-        console.log(state)
     }
 
     const handleSumbit=(e)=>
     {
         e.preventDefault()
-        //change state
+        console.log(state)
+
+        fetch('/')
+        .then(res=>console.log(res))
+        .catch(err=>{
+            console.log(err)
+        })
         //start redirect
+        setState(prev=>
+        {
+          return{
+              ...prev,
+              redirect:true
+          }  
+        })
 
     }
-    if(state.redirect)
+    if(state.redirect || props.location.params ===undefined)
     {
         return(
             <Redirect to={'/'}/>
         )
     }
     return(
-        <form id="form">
+        <form id="form" onSubmit={(e)=>handleSumbit(e)}>
             <label>Name:</label>
-            <input id="name" name="name" required type="text" autoFocus onChange={(e)=>handleChange(e)} />
+            <input id="name" maxLength="20" name="name" required type="text" autoFocus onChange={(e)=>handleChange(e)} />
             <br/>
             <label>Email address:</label>
             <input name="email" type="email" required onChange={(e)=>handleChange(e)}/>
             <br/>
             <label>Phone #:</label>
-            <input name="phNum"  type="tel" required onChange={(e)=>handleChange(e)}/>
+            <input name="phNum" maxLength="10" type="tel" required onChange={(e)=>handleChange(e)}/>
             <br/>
             <label>Color:</label>
             <select name="color" onChange={(e)=>handleChange(e)}>
@@ -70,15 +96,15 @@ function Form(props)
             </select>
             <br/>
             <textarea
+                name="text"
                 placeholder="Your message here!"
                 rows={6}
                 cols={25}
                 maxLength={125}
                 onChange={(e)=>handleChange(e)}
-                required
             />
             <br/>
-            <input type="submit" onClick={(e)=>handleSumbit(e)}/>
+            <input type="submit"/>
         </form>
     )
 }
