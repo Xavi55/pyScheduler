@@ -103,9 +103,16 @@ margin:0;
   border-radius: 10px;
   text-align: center;
 }
+#form #checkGrid
+{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  row-gap: 2px;
+  margin: 0;
+}
 #form input,select,textarea
 {
-  margin:0 0 2em 2em;
+  margin:0 0 1em 1em;
 }
 textarea
 {

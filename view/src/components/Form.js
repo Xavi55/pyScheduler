@@ -3,21 +3,21 @@ import React, {  useState,useEffect }from 'react';
 
 function Form(props)
 {
+    const [redirect, setRedirect]=useState(false)
     const [state,setState] =useState(
-        {
-            name:null,
-            phNum:null,
-            email:null,
-            text:null,
-            day:null,
-            month:null,
-            year:null,
-            time:null,
-            color:"b",
-
-            redirect:false
-        }
-    )
+    {
+        name:null,
+        phNum:null,
+        email:null,
+        text:null,
+        day:null,
+        month:null,
+        year:null,
+        time:null,
+        slot1:false,
+        slot2:false,
+        color:"b",
+    })
 
     useEffect(()=>
     {
@@ -42,20 +42,28 @@ function Form(props)
     const handleChange=(e)=>
     {
         let x=e.target.name
-        let value = e.target.value
+        let value=null
+        if(x==='slot1' || x==='slot2')
+        {
+            value=e.target.checked
+        }
+        else
+        {
+            value = e.target.value
+        }
         setState(prev=>
-            {
-                return{
-                    ...prev,
-                    [x]:value
-                }
-            })
+        {
+            return{
+                ...prev,
+                [x]:value
+            }
+        })
     }
 
     const handleSumbit=(e)=>
     {
         e.preventDefault()
-        console.log(state)
+        //console.log(state)
         let data={
             state
         }
@@ -72,18 +80,11 @@ function Form(props)
         .catch(err=>{
             console.log(err)
         })
-        //start redirect
-        /* 
-        setState(prev=>
-        {
-          return{
-              ...prev,
-              redirect:true
-          }  
-        }) */
-
+        
+        //begin redirect
+        //setRedirect(true)
     }
-    if(state.redirect || props.location.params ===undefined)
+    if(redirect || props.location.params ===undefined)
     {
         return(
             <Redirect to={'/'}/>
@@ -107,6 +108,23 @@ function Form(props)
                 <option id="green">g</option>
                 <option id="yellow">y</option>
             </select>
+            <div id="checkGrid">
+                <label>Time Slot:</label>
+                <div id="gridBoxes">
+                    <div>
+                        <label>
+                        <input className="check" type="checkbox" name="slot1" onChange={(e)=>handleChange(e)}></input>
+                        &nbsp;&nbsp;&nbsp;0~30mins
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                        <input className="check" type="checkbox" name="slot2" onChange={(e)=>handleChange(e)} />
+                        &nbsp;&nbsp;&nbsp;30~60mins
+                        </label>
+                    </div>
+                </div>
+            </div>
             <br/>
             <textarea
                 name="text"
