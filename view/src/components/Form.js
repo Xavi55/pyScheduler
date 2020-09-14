@@ -63,7 +63,7 @@ function Form(props)
     const handleSumbit=(e)=>
     {
         e.preventDefault()
-        //console.log(state)
+        console.log(state)
         let data={
             state
         }
@@ -80,11 +80,11 @@ function Form(props)
         .catch(err=>{
             console.log(err)
         })
-        
+
         //begin redirect
         //setRedirect(true)
     }
-    if(redirect || props.location.params ===undefined)
+    if(redirect || props.location.params===undefined)
     {
         return(
             <Redirect to={'/'}/>

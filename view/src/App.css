@@ -93,6 +93,10 @@ margin:0;
   background-color: chartreuse;
   border-radius: 9px;
 }
+.booked:hover
+{
+  background-color: rgb(255, 92, 92);
+}
 /*Form*/
 #form
 {

@@ -55,6 +55,11 @@ def getTime():
     t = time.localtime()
     return json.dumps({'h':t[3],'m':t[4]})
 
+@app.route("/fetch/<month>",methods=["GET"])
+def getMemos(month):
+    data=list(db.calendar.find({"month":month}))
+    return json.dumps({"data":data},default=str)
+
 @app.route("/subForm",methods=["POST"])
 def saveMemo():
     data = request.json["state"]

@@ -1,18 +1,25 @@
-import React from 'react';
+import React, { useState,useEffect }from 'react';
 import { Link } from 'react-router-dom'
 
 function Grid(match)
 {
     let vars= match.match.params
-
+    const [selected,setSelected]=useState(false)
+    const [time,setTime]=useState(0)
     const options={
         pathname:`/Form`,
         params:{
             year:vars.year,
             month:vars.month,
             day:vars.day,
-            time:"SOMETIME"
+            time:time
         }
+    }
+
+    const renderForm=(t)=>
+    {
+        setTime(t)
+        setSelected(true)
     }
 
     return(
@@ -20,7 +27,7 @@ function Grid(match)
             <Link  id="home" to={'/'}>Go back</Link>
             <h2 id="gTitle">{vars.month} {vars.day}</h2>
             <div id="content">
-                <h2>8am</h2><div><Link className={"bLink"} to={options}><h2 className="block">Name</h2></Link><Link className={"bLink"} to={'/Form'}><h2 className="block">Name2</h2></Link></div>
+                <h2>8am</h2><div><Link className="bLink" to={options}><h2 className="block" onMouseOver={()=>renderForm(8)}>Name</h2></Link><Link className={"bLink"} to={'/Form'}><h2 className="block">Name2</h2></Link></div>
                 <h2>9am</h2><h2 className="block">-</h2>
                 <h2>10am</h2><h2 className="block">-</h2>
                 <h2>11am</h2><h2 className="block">-</h2>

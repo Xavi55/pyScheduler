@@ -73,6 +73,9 @@ function App()
                trav:0
             }
        })
+
+
+       fetchMemos(mon[m])//get data for the current month
     }
     const changeMonth=(code)=>
     {
@@ -104,6 +107,21 @@ function App()
        return new Date(yr,mon,0).getDate()
    }
 
+   const fetchMemos=(m)=>
+   {
+       if(m!=="#month")
+       {
+        fetch(`/fetch/${m}`,
+        {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }).then(res=>res.json())
+           .then(data=>console.log(data))
+           .catch(err=>console.log(err))
+       }
+   }
    useEffect(()=>
    {
        getDate()
